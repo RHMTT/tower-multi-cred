@@ -9,6 +9,10 @@
 
     - local_action:
         module: shell
+        _raw_params: 'ls -al /kinit'
+        
+    - local_action:
+        module: shell
         _raw_params: 'kinit ansible@LAB.INT -k -t /kinit/username.keytab'
 
     - name: ping windows box
