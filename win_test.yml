@@ -13,7 +13,7 @@
         
     - local_action:
         module: shell
-        _raw_params: 'kinit ansible@LAB.INT -k -t /kinit/username.keytab'
+        _raw_params: 'kinit pavery@LAB.INT -k -t /kinit/username.keytab'
 
     - name: ping windows box
       win_ping:
