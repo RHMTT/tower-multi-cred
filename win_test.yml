@@ -14,6 +14,7 @@
     - local_action:
         module: shell
         _raw_params: 'kinit pavery@LAB.INT -k -t /kinit/username.keytab'
+        run_once: True
 
     - name: ping windows box
       win_ping:
