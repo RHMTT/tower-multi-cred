@@ -5,16 +5,8 @@
   tasks:
     - local_action:
         module: shell
-        _raw_params: 'ls -al'
-
-    - local_action:
-        module: shell
-        _raw_params: 'ls -al /kinit'
-        
-    - local_action:
-        module: shell
         _raw_params: 'kinit pavery@LAB.INT -k -t /kinit/username.keytab'
-        run_once: True
+      run_once: True
 
     - name: ping windows box
       win_ping:
