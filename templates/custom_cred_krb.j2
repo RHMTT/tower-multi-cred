@@ -1,0 +1,39 @@
+{
+  "name": "{{ credential_name }}",
+  "description": "",
+  "kind": "cloud",
+  "inputs": {
+    "fields": [
+{% for domain in domains %}
+      {
+        "id": "{{ domain }}_user",
+        "type": "string",
+        "label": "{{ domain|upper }} User"
+      },
+      {
+        "id": "{{ domain }}_keystore",
+        "type": "string",
+        "label": "{{ domain|upper }} Kerberos Keystore Name",
+      }{{ "," if not loop.last }}
+{% endfor %}
+    ],
+    "required": [
+{% for domain in domains %}
+      "{{ domain }}_user",
+      "{{ domain }}_keystore"{{ "," if not loop.last }}
+{% endfor %}
+    ]
+  },
+  "injectors": {
+    "extra_vars": {
+{% for domain in domains %}
+      "{{ domain }}_user": {% raw %}"{{ {% endraw %}{{ domain }}_user{% raw %} }}"{% endraw %}"{% endraw %}{{ "," if not loop.last }}
+{% endfor %}
+    }
+    "env": {
+      {% for domain in domains %}
+            "{{ domain }}_keystore": {% raw %}"{{ {% endraw %}{{ domain }}_user{% raw %} }}"{% endraw %}"{% endraw %}{{ "," if not loop.last }}
+      {% endfor %}
+          }
+  }
+}
