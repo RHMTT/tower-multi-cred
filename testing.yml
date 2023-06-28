@@ -1,0 +1,7 @@
+---
+- name: testing vars
+  hosts: all
+  tasks:
+  - name: pause playbook to validate data
+    ansible.builtin.pause:
+      seconds: "{{ sleep_sec }}"
